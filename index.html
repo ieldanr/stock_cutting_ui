@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" ng-app="demandmvc" data-framework="angularjs">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Stock Cutting</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+		<!--<link rel="stylesheet" href="bower_components/todomvc-common/base.css">-->
+		<link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+
+		<style>[ng-cloak] { display: none; }</style>
+	</head>
+	<body>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
+				<section ng-controller="DemandCtrl">
+					<header id="header">
+						<h1>Demand</h1>
+						<form id="demand-form" ng-submit="addDemand()" class="form-inline" role="form">
+							<div class="form-group">
+								<input id="new-demand" class="form-control" placeholder="Demand number" ng-model="newDemand.number" autofocus>
+							</div>
+							<div class="form-group">
+								<input id="new-demand" class="form-control" placeholder="Demand width" ng-model="newDemand.width">
+							</div>
+							<div class="form-group">
+								<button class="btn btn-default" ng-click="addDemand()">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</div>
+						</form>
+					</header>
+					<section id="main" ng-show="demands.length" ng-cloak>
+						<table class="table" id="demand-table">
+							<thead>
+								<tr>
+									<th>Number</th>
+									<th>Width</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="demand in demands">
+									<td><a href="#" editable-text="demand.number">{{demand.number}}</a></td>
+									<td><a href="#" editable-text="demand.width">{{demand.width}}</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+			</div>
+			<div class="col-md-4">
+				<section ng-controller="StockCtrl">
+					<header id="header">
+						<h1>Stocks</h1>
+						<form id="stock-form" ng-submit="addStock()" class="form-inline" role="form">
+							<div class="form-group">
+								<input id="new-stock" class="form-control" placeholder="Stock number" ng-model="newStock.number" autofocus>
+							</div>
+							<div class="form-group">
+								<input id="new-stock" class="form-control" placeholder="Stock width" ng-model="newStock.width">
+							</div>
+							<div class="form-group">
+								<button class="btn btn-default" ng-click="addStock()">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</div>
+						</form>
+					</header>
+					<section id="main" ng-show="stocks.length" ng-cloak>
+						<table class="table" id="stocks-table">
+							<thead>
+								<tr>
+									<th>Number</th>
+									<th>Width</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="stock in stocks">
+									<td><a href="#" editable-text="stock.number">{{stock.number}}</a></td>
+									<td><a href="#" editable-text="stock.width">{{stock.width}}</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+			</div>
+		</div>
+		<br>
+		<div ng-controller="StockCuttingCtrl">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<button class="btn btn-primary btn-lg btn-block" ng-click="solve()">Solve</button>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<h1>Result</h1>
+					<section id="main" ng-show="cutPatterns.length" ng-cloak>
+						<table class="table" id="result-table">
+							<thead>
+								<tr>
+									<th>Repetition</th>
+									<th>Contents</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="cutPattern in cutPatterns">
+									<td>{{cutPattern.repetition}}</td>
+									<td>{{cutPattern.contents}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</div>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/services/stockCuttingData.js"></script>
+		<script src="js/services/stockCutting.js"></script>
+		<script src="js/controllers/demandCtrl.js"></script>
+		<script src="js/controllers/stockCtrl.js"></script>
+		<script src="js/controllers/stockCuttingCtrl.js"></script>
+		<script src="js/directives/demandFocus.js"></script>
+		<script src="js/directives/demandEscape.js"></script>
+				<!-- Latest compiled and minified JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+		<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+	</body>
+</html>
