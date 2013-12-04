@@ -85,7 +85,9 @@
 							<tbody>
 								<tr ng-repeat="stock in stocks">
 									<td><a href="#" editable-text="stock.number">{{stock.number}}</a></td>
-									<td><a href="#" editable-text="stock.width">{{stock.width}}</a></td>
+									<td><div style="position:relative"><a href="#" editable-text="stock.width">{{stock.width}}</a>
+									<button class="destroy-btn" ng-click="removeStock(stock)"></button></div>
+									</td>
 								</tr>
 							</tbody>
 						</table>

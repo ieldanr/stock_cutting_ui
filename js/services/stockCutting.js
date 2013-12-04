@@ -3,10 +3,6 @@ function StockCutting(){}
 StockCutting.prototype.solve = function(stockCuttingData){
   var demands = stockCuttingData.demands;
   var stocks = stockCuttingData.stocks;
-
-
-
-  var common_stock_length =
   return [
     {repetition: 2,
      contents: [1820, 1820, 1820]
