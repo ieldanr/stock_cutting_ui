@@ -10,7 +10,7 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
 
-		<!--<link rel="stylesheet" href="bower_components/todomvc-common/base.css">-->
+		<link rel="stylesheet" href="style/base.css">
 		<link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
 
 		<style>[ng-cloak] { display: none; }</style>
@@ -47,7 +47,9 @@
 							<tbody>
 								<tr ng-repeat="demand in demands">
 									<td><a href="#" editable-text="demand.number">{{demand.number}}</a></td>
-									<td><a href="#" editable-text="demand.width">{{demand.width}}</a></td>
+									<td><div style="position:relative"><a href="#" editable-text="demand.width">{{demand.width}}</a>
+									<button class="destroy-btn" ng-click="removeDemand(demand)"></button></div>
+									</td>
 								</tr>
 							</tbody>
 						</table>
