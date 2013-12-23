@@ -4,7 +4,8 @@ StockCutting.prototype.solve = function(stockCuttingData){
   var demands = stockCuttingData.demands;
   var stocks = stockCuttingData.stocks;
   return [
-    {repetition: 2,
+    {
+      repetition: 2,
      contents: [1820, 1820, 1820]
     },
     {
