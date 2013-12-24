@@ -1,22 +1,18 @@
-function StockCutting(){}
-
-StockCutting.prototype.solve = function(stockCuttingData){
-  var demands = stockCuttingData.demands;
-  var stocks = stockCuttingData.stocks;
-  return [
-    {
-      repetition: 2,
-     contents: [1820, 1820, 1820]
-    },
-    {
-      repetition: 3,
-      contents: [1380, 2150, 1930]
-    },
-    {
-      repetition:12,
-      contents: [1380, 2150, 2050]
+demandmvc.factory('StockCutting', function($http){
+  var StockCutting = {
+    solve: function(stockCuttingData) {
+      var demands = stockCuttingData.demands;
+      var stocks = stockCuttingData.stocks;
+      // $http returns a promise, which has a then function, which also returns a promise
+      var promise = $http.get('/api/solve').then(function (response) {
+        // The then function here is an opportunity to modify the response
+        console.log(response);
+        // The return value gets picked up by the then in the controller.
+        return response.data;
+      });
+      // Return the promise to the controller
+      return promise;
     }
-  ]
-};
-
-demandmvc.service('StockCutting', StockCutting);
+  };
+  return StockCutting;
+});

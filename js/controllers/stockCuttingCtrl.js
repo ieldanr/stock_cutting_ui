@@ -9,7 +9,9 @@
 demandmvc.controller('StockCuttingCtrl', function StockCuttingCtrl($scope, StockCutting, StockCuttingData, filterFilter) {
   $scope.cutPatterns = []
 
-  $scope.solve = function () {
-    $scope.cutPatterns = StockCutting.solve(StockCuttingData)
+  $scope.solve = function() {
+    StockCutting.solve(StockCuttingData).then(function(data){
+      $scope.cutPatterns = data.response;
+    });
   };
 });
