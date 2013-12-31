@@ -11,7 +11,7 @@ demandmvc.controller('StockCuttingCtrl', function StockCuttingCtrl($scope, Stock
 
   $scope.solve = function() {
     StockCutting.solve(StockCuttingData).then(function(data){
-      $scope.cutPatterns = data.response;
+      $scope.cutPatterns = data.rawsUsed;
     });
   };
 });

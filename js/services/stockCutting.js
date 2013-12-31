@@ -1,10 +1,26 @@
 demandmvc.factory('StockCutting', function($http){
   var StockCutting = {
     solve: function(stockCuttingData) {
-      var demands = stockCuttingData.demands;
       var stocks = stockCuttingData.stocks;
+      var stockQuantities = [];
+      var stockWidths = [];
+      for(i in stocks){
+        stockQuantities.push(stocks[i].number);
+        stockWidths.push(stocks[i].width);
+      }
+
+      var demands = stockCuttingData.demands;
+      var demandQuantities = [];
+      var demandWidths = [];
+      for(i in demands){
+        demandQuantities.push(demands[i].number);
+        demandWidths.push(demands[i].width);
+      }
       // $http returns a promise, which has a then function, which also returns a promise
-      var promise = $http.get('/api/solve').then(function (response) {
+      var promise = $http.get('/api/solve?stockQuantities=' + stockQuantities.join(',') +
+        '&stockWidths=' + stockWidths.join(',') +
+        '&demandQuantities=' + demandQuantities.join(',') +
+        '&demandWidths=' + demandWidths.join(',')).then(function (response) {
         // The then function here is an opportunity to modify the response
         console.log(response);
         // The return value gets picked up by the then in the controller.

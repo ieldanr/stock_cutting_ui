@@ -113,14 +113,18 @@
 						<table class="table" id="result-table">
 							<thead>
 								<tr>
-									<th>Repetition</th>
-									<th>Contents</th>
+									<th>Times</th>
+									<th>Stock</th>
+									<th>Cuts</th>
+									<th>Waste</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr ng-repeat="cutPattern in cutPatterns">
-									<td>{{cutPattern.repetition}}</td>
-									<td>{{cutPattern.contents}}</td>
+									<td>{{cutPattern.quantity}}</td>
+									<td>{{cutPattern.width}}</td>
+									<td>{{cutPattern.demandObtained}}</td>
+									<td>{{cutPattern.waste}}</td>
 								</tr>
 							</tbody>
 						</table>
