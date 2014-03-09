@@ -1,6 +1,6 @@
 demandmvc.factory('StockCutting', function($http){
   var StockCutting = {
-    solve: function(stockCuttingData) {
+    solve: function(stockCuttingData, url) {
       var stocks = stockCuttingData.stocks;
       var stockQuantities = [];
       var stockWidths = [];
@@ -17,7 +17,7 @@ demandmvc.factory('StockCutting', function($http){
         demandWidths.push(demands[i].width);
       }
       // $http returns a promise, which has a then function, which also returns a promise
-      var promise = $http.get('/api/solve?stockQuantities=' + stockQuantities.join(',') +
+      var promise = $http.get(url + '?stockQuantities=' + stockQuantities.join(',') +
         '&stockWidths=' + stockWidths.join(',') +
         '&demandQuantities=' + demandQuantities.join(',') +
         '&demandWidths=' + demandWidths.join(',')).then(function (response) {
@@ -28,6 +28,12 @@ demandmvc.factory('StockCutting', function($http){
       });
       // Return the promise to the controller
       return promise;
+    },
+    solveBruteForce: function(stockCuttingData) {
+      return this.solve(stockCuttingData, '/api/solve')
+    },
+    solveApprox: function(stockCuttingData) {
+      return this.solve(stockCuttingData, '/api/solve_approx')
     }
   };
   return StockCutting;
